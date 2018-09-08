@@ -1,0 +1,125 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Wayne Havey Journal \#2\\
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Wayne R. Havey III}
+\IEEEauthorblockA{\textit{PhD Security} \\
+\textit{UCCS}\\
+Colorado Springs, CO \\
+whavey@uccs.edu}
+}
+
+\maketitle
+
+\section{This Weeks Learning}
+This week I learned a great deal about academic papers in general as well as how to browse, scan, and critically/creatively read them. 
+
+\subsection{Browsing and Scanning}
+For browsing scanning a large amount of papers in a day I learned that it is harder to be fast, that is; browsing in under 2 minutes and scanning in 5-10, if the paper appears immediately interesting. Some tactics I deployed to browse and scan quicker were to try to find the most relevant figure and to find the section (or lack thereof) that discussed comparison to current state of the art and other related work. Additionally, I noticed that some papers were able to provide a direct practical contribution as a result of their research which, to me, was a sign that the paper maybe more likely to be worth reading critically/creatively. 
+
+Some questions I had while browsing and scanning papers were: is it acceptable to both develop a new way of doing something as well as a new metric to measure the effectiveness of that new tool or method and; is it a bad  sign or smart idea to present challenges encountered during the research before presenting the research itself?
+
+\subsection{Critically and Creatively Reading}
+Critically and creative reading was more enjoyable at least for the first paper. One paper was far more interesting to me right from the beginning than the other. The second paper was definitely worth reading by the end however. I should not have read the second one sequentially as was mentioned in class. I learned that if I plan to read a certain amount of papers it may be better to start with the ones that seem least interesting while I have more energy to read.
+
+\subsection{My Process}
+I set up a excel document before starting browsing to make the recording of the browsing results easier. I created a table with column headings of paper title (for which I paraphrased), the amount of time taken to browse (I used a metric of >2, <2, or 2 minutes), and the verdict on whether or not to keep it for scanning. If I elected to keep it I provided a few word explanation as to why. Additionally I kept a system timer open so I could easily switch windows between my paper reading, timer, and excel sheet so as to waste less time context switching.
+
+Finding a journal in my field of interest within the last two years that had greater than or equal to 45 articles in 2 or less journals proved to be nearly impossible so I ended up using a conference proceeding that had all articles in one pdf document which made browsing much easier.
+
+For the critical and creative read portion I just used word documents to record notes in a bullet item list type format. In the future I would like to use excel again or at least a table of some kinds so I can record what section of the paper the note I was writing pertains to.
+
+\section{Critical and Creative Reading Notes From USENIX Security '18 Technical Sessions\cite{noauthor_usenix_2018}}
+\subsection{SAQL: A Stream-based Query System for Real-Time Abnormal System Behavior Detection\cite{gao_saql:_2018}}
+Recognized key issue of needing expertise.
+Is environment size/amount of data a constraint?
+Still required expert knowledge of environment, which is good.
+Specify rules with a time base?
+Modify sliding window size?
+Windows defined by data source/type? Tailorable?
+States of past sliding windows could be very interesting to store and perform some kind of ML on.
+Tag sliding windows with user or system?
+What is siddhi?
+How to decide what makes a good master query?
+SAQL query to attack-type ratio.
+Cutting off the attack midway through sliding window?
+Events arriving out of order?
+Detecting an absence/error in logging?
+Freeze window of multiple event ‘slots’ after evt 1 hits in case malware latent.
+Using SAQL for detonation chambers or straight dynamic malware analysis.
+Expect incoming data from specific sources? Formatted a particular way? What if forwarder converts to json or something?
+Create rules for amount of data flowing in as its own subject/object?
+Why java?
+Converting CAR analytics to SAQL queries.
+Algorithm for master-dependent queries used elsewhere?
+Access to stream replayer?
+Multiple copies of data stream inconsistent.
+Graphs only up to 4 concurrent queries a practical test? Does saql catch up to siddhi at higher levels?
+Queries over stream topics.
+Distributed setup for saql: research topic
+Inter process comms (pipes)
+SAQL for alert fusion (saql queries as modules to be chained?)
+AIQL + SAQL
+
+\subsection{Enabling Refinable Cross-Host Attack Investigation with Efficient Data Flow Tagging and Tracking\cite{ji_enabling_2018}}
+Claims no solution exists, doubt that’s true.
+Can be integrated with SAQL research in some way?
+Details of host logs correlated with network flow.
+Seems like it could be related to netcheck.
+What do they mean by dependency explosion in this context?
+Only perform analysis during replay? What denotes start/stop session. Detection latency a problem?
+Tags just mean metadata?
+Instruction level logging? Why so much overhead?
+RAIN tech syscalls replayed.
+Not as much netflow based as I thought.
+DIFT just a debugger??
+Gramatically not great.
+Serialized replay for tag dependency. Replay literally means running the same processes again?
+Is this more for sandboxed malware analysis?
+Whats a symbolized tag?
+Local tags solve issue? Seems to simple to not already be a thing. Swapping/switching empty tags for real ones.
+Tag association at byte level(?) for identifying host comms
+Assume RTAG system itself not compromised. Seems common for TCB (trusted computing base)
+Each tag associated with parent tag to trace back bytes originating from another host/process/file
+More background on interference needed
+Dynamic tag size?
+Just for forensics?
+Desperately needs more figures.
+Tagging based on query or query happens after all tags enumerated? Returns data? Json? Whats the usefulness.
+Create saql queries for rtag return values?
+C code added to kernel modules.
+Ubuntu only?
+Reachability analysis key to understanding but very little background given
+Examples don’t make sense, using dump file as starting point to see what was dumped? Why not just read file…
+Final example much better and describing forward and backward queries and potential use cases. Just now starting to seem useful and interesting.
+Massive improvements in performance and capability of current sota.
+Why are rtag and net-provenance orthogonal?
+Detect :: Replay (get full scope of attack) :: Respond: RTAG as a first step for response.
+“Plan” to release source code. FOSS?
+Embedding tag info into udp headers (maybe before forwarding but after real txfr).
+Further research: info when only some hosts have rtag.
+
+\nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{journal2}
+
+\end{document}
